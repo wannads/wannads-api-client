@@ -16,13 +16,8 @@ class WannadsApiClient
 
     public function __construct($apiKey, $apiSecret)
     {
-        if (empty($config)) {
-            return null;
-        }
-
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
-
     }
 
     public function getSurveyUser($subId)
@@ -67,7 +62,6 @@ class WannadsApiClient
     {
         $json_data = json_encode($args);
 
-
         if (function_exists('curl_init') && function_exists('curl_setopt')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -75,18 +69,19 @@ class WannadsApiClient
             curl_setopt($ch, CURLOPT_USERAGENT, 'PHP-MCAPI/2.0');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-            if($method == "POST"){
+            if ($method == "POST") {
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-            }else if($method == "PUT"){
+            } else if ($method == "PUT") {
                 curl_setopt($ch, CURLOPT_PUT, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-            }else if($method == "DELETE"){
+            } else if ($method == "DELETE") {
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
             }
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
             $result = curl_exec($ch);
+
             curl_close($ch);
         } else {
 
@@ -115,6 +110,13 @@ class WannadsApiClient
 
 
         return $result ? json_decode($result, true) : false;
+    }
+
+    private function dd($var)
+    {
+        var_dump($var);
+        exit();
+
     }
 
 }
