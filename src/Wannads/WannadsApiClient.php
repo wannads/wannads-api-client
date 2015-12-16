@@ -67,25 +67,50 @@ class WannadsApiClient
     {
         $json_data = json_encode($args);
 
-        if ($method == "PUT" || $method == "POST") {
-            $result = file_get_contents($url, null, stream_context_create(array(
-                'http' => array(
-                    'protocol_version' => 1.1,
-                    'user_agent' => 'PHP-MCAPI/2.0',
-                    'method' => $method,
-                    'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n",
-                    'content' => $json_data,
-                ),
-            )));
+
+        if (function_exists('curl_init') && function_exists('curl_setopt')) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+            curl_setopt($ch, CURLOPT_USERAGENT, 'PHP-MCAPI/2.0');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+            if($method == "POST"){
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+            }else if($method == "PUT"){
+                curl_setopt($ch, CURLOPT_PUT, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+            }else if($method == "DELETE"){
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+            }
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+            $result = curl_exec($ch);
+            curl_close($ch);
         } else {
-            $result = file_get_contents($url, null, stream_context_create(array(
-                'http' => array(
-                    'protocol_version' => 1.1,
-                    'user_agent' => 'PHP-MCAPI/2.0',
-                    'method' => $method,
-                    'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n"
-                ),
-            )));
+
+            if ($method == "PUT" || $method == "POST") {
+                $result = file_get_contents($url, null, stream_context_create(array(
+                    'http' => array(
+                        'protocol_version' => 1.1,
+                        'user_agent' => 'PHP-MCAPI/2.0',
+                        'method' => $method,
+                        'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n",
+                        'content' => $json_data,
+                    ),
+                )));
+            } else {
+                $result = file_get_contents($url, null, stream_context_create(array(
+                    'http' => array(
+                        'protocol_version' => 1.1,
+                        'user_agent' => 'PHP-MCAPI/2.0',
+                        'method' => $method,
+                        'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n"
+                    ),
+                )));
+            }
+
         }
 
 
