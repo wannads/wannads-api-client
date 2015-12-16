@@ -12,7 +12,7 @@ class WannadsApiClient
 
     private $apiKey;
     private $apiSecret;
-    private $endpoint = "http://api.wannads.com";
+    private $endpoint = "http://api.wannads.com/";
 
     public function __construct($apiKey, $apiSecret)
     {
@@ -29,13 +29,13 @@ class WannadsApiClient
     {
 
         $urlParams = [
-            "api_key" => "",
-            "api_secret" => "",
-            "sub_id" => ""
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
         ];
 
 
-        $url = $this->endpoint . "/surveys/?" . http_build_query($urlParams);
+        $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
 
@@ -67,17 +67,27 @@ class WannadsApiClient
     {
         $json_data = json_encode($args);
 
-        $result = file_get_contents($url, null, stream_context_create(array(
-            'http' => array(
-                'protocol_version' => 1.1,
-                'user_agent' => 'PHP-MCAPI/2.0',
-                'method' => $method,
-                'header' => "Content-type: application/json\r\n" .
-                    "Connection: close\r\n" .
-                    "Content-length: " . strlen($json_data) . "\r\n",
-                'content' => $json_data,
-            ),
-        )));
+        if ($method == "PUT" || $method == "POST") {
+            $result = file_get_contents($url, null, stream_context_create(array(
+                'http' => array(
+                    'protocol_version' => 1.1,
+                    'user_agent' => 'PHP-MCAPI/2.0',
+                    'method' => $method,
+                    'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n",
+                    'content' => $json_data,
+                ),
+            )));
+        } else {
+            $result = file_get_contents($url, null, stream_context_create(array(
+                'http' => array(
+                    'protocol_version' => 1.1,
+                    'user_agent' => 'PHP-MCAPI/2.0',
+                    'method' => $method,
+                    'header' => "Content-type: application/json\r\n" . "Connection: close\r\n" . "Content-length: " . strlen($json_data) . "\r\n"
+                ),
+            )));
+        }
+
 
         return $result ? json_decode($result, true) : false;
     }
