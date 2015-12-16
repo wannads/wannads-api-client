@@ -12,7 +12,7 @@ class WannadsApiClient
 
     private $apiKey;
     private $apiSecret;
-    private $endpoint = "http://api.wannads.com/";
+    private $endpoint = "http://api.wannads.com/v2/";
 
     public function __construct($apiKey, $apiSecret)
     {
@@ -35,7 +35,7 @@ class WannadsApiClient
         ];
 
 
-        $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
+        $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
 
