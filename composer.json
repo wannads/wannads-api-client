@@ -2,6 +2,7 @@
   "name": "wannads/wannads-api-client",
   "description": "PHP client for Wannads API",
   "license": "Apache-2.0",
+  "minimum-stability" : "dev",
   "authors": [
     {
       "name": "Wannads",
