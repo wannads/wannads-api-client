@@ -25,9 +25,21 @@ class WannadsApiClient
 
     }
 
-    public function getSurveyUser($subId, $user)
+    public function getSurveyUser($subId)
     {
-        $url = $this->endpoint . "/" . ;
+
+        $urlParams = [
+            "api_key" => "",
+            "api_secret" => "",
+            "sub_id" => ""
+        ];
+
+
+        $url = $this->endpoint . "/surveys/?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
     }
 
     public function insertSurveyUser($user)
@@ -53,8 +65,6 @@ class WannadsApiClient
      */
     private function makeRequest($url, $method, $args = array(), $timeout = 10)
     {
-        $args['apikey'] = $this->api_key;
-
         $json_data = json_encode($args);
 
         $result = file_get_contents($url, null, stream_context_create(array(
