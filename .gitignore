@@ -1,0 +1,8 @@
+*.iml
+vendor/
+.idea/
+*.ipr
+*.iws
+/out/
+.idea_modules/
+
