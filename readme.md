@@ -19,22 +19,22 @@ Get user data from Wannads Surveys.
 
 use WannadsApiClient;
 
-        $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
-        $user = $wannadsApiClient->getSurveyUser($userId);
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$user = $wannadsApiClient->getSurveyUser($userId);
 ```
 
-Get user data from Wannads Surveys.
+Delete user from Wannads Surveys.
 
 ```php
 
-Delete user from Wannads Surveys.
+
 
 <?php
 
 use WannadsApiClient;
 
-        $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
-        $user = $wannadsApiClient->getSurveyUser($userId);
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$user = $wannadsApiClient->getSurveyUser($userId);
 ```
 
 # TEST launch
