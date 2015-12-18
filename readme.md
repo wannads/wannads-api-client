@@ -26,9 +26,6 @@ $user = $wannadsApiClient->getSurveyUser($userId);
 Delete user from Wannads Surveys.
 
 ```php
-
-
-
 <?php
 
 use WannadsApiClient;
