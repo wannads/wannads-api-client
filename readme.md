@@ -34,6 +34,17 @@ $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
 $user = $wannadsApiClient->getSurveyUser($userId);
 ```
 
+Get available surveys for a user.
+
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$surveys = $wannadsApiClient->getSurveys($userId);
+```
+
 # TEST launch
 
 ```bash

@@ -22,13 +22,11 @@ class WannadsApiClient
 
     public function getSurveyUser($subId)
     {
-
         $urlParams = [
             "api_key" => $this->apiKey,
             "api_secret" => $this->apiSecret,
             "sub_id" => $subId
         ];
-
 
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
 
@@ -58,6 +56,21 @@ class WannadsApiClient
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
 
         $this->makeRequest($url, "DELETE");
+    }
+
+    public function getSurveys($subId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
     }
 
     /**
