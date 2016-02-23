@@ -110,7 +110,9 @@ class WannadsApiClient
 
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
 
-        $this->makeRequest($url, "DELETE");
+        $result = $this->makeRequest($url, "DELETE");
+
+        return $result;
     }
 
     public function getSurveys($subId)
