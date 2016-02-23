@@ -12,6 +12,28 @@ composer require wannads/wannads-api-client
 
 ## Examples
 
+Create Wannads Surveys user.
+
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$user = $wannadsApiClient->createSurveyUser($userId, $data);
+```
+
+Update Wannads Surveys user.
+
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$user = $wannadsApiClient->updateSurveyUser($userId, $data);
+```
+
 Get user data from Wannads Surveys.
 
 ```php
@@ -31,7 +53,7 @@ Delete user from Wannads Surveys.
 use WannadsApiClient;
 
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
-$user = $wannadsApiClient->getSurveyUser($userId);
+$wannadsApiClient->deleteSurveyUser($userId);
 ```
 
 Get available surveys for a user.

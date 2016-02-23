@@ -9,7 +9,6 @@ namespace Wannads;
  */
 class WannadsApiClient
 {
-
     private $apiKey;
     private $apiSecret;
     private $endpoint = "http://api.wannads.com/v2/";
@@ -35,14 +34,70 @@ class WannadsApiClient
         return $result;
     }
 
-    public function insertSurveyUser($user)
+    public function createSurveyUser($subId, $user)
     {
+        $surveyUserData = array(
+            "sub_id" => $subId,
+            "email" => $user['email'],
+            "gender" => $user['gender'],
+            "birthyear" => $user['birthyear'],
+            "first_name" => $user['first_name'],
+            "last_name" => $user['last_name'],
+            "zip" => $user['zip'],
+            "education_level" => $user['education_level'],
+            "occupation" => $user['occupation'],
+            "children_under18" => $user['children_under18'],
+            "marital_status" => $user['marital_status'],
+            "phone" => $user['phone'],
+            "address" => $user['address'],
+            "country" => $user['country']
+        );
 
+
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "POST", $surveyUserData);
+
+        return $result;
     }
 
     public function updateSurveyUser($subId, $user)
     {
+        $surveyUserData = array(
+            "sub_id" => $subId,
+            "email" => $user['email'],
+            "gender" => $user['gender'],
+            "birthyear" => $user['birthyear'],
+            "first_name" => $user['first_name'],
+            "last_name" => $user['last_name'],
+            "zip" => $user['zip'],
+            "education_level" => $user['education_level'],
+            "occupation" => $user['occupation'],
+            "children_under18" => $user['children_under18'],
+            "marital_status" => $user['marital_status'],
+            "phone" => $user['phone'],
+            "address" => $user['address'],
+            "country" => $user['country']
+        );
 
+
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "PUT", $surveyUserData);
+
+        return $result;
     }
 
     public function deleteSurveyUser($subId)
