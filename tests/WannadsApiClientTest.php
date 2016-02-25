@@ -10,9 +10,9 @@
 class WannadsApiClientTest extends PHPUnit_Framework_TestCase
 {
 
-    private $apiKey = "54d29b5e56de3225111124";
-    private $apiSecret = "59bed3e5d6";
-    private $subId = "Chizaa93";
+    private $apiKey = "54c679ed6e976224761456";
+    private $apiSecret = "7e5de9a696";
+    private $subId = "";
 
     public function testGeSurveyUser()
     {
@@ -23,5 +23,25 @@ class WannadsApiClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertNotNull($result);
     }
+
+    public function testGetOffers()
+    {
+
+        $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
+
+        $country = "ES";
+        $ip = "";
+        $fingerprint = "";
+        $device = []; // desktop, iphone, ipad, android, empty for all
+        $category = ["dailysurveys"]; // all, dailysurveys, surveys, signups, downloads, pinsubmit, purchase, dating, mobileapps
+        $gender = ""; // female, male, female
+        $payment = ""; // all, yes, no
+
+        $result = $client->getOffers($this->subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment);
+
+        $this->assertNotEmpty($result);
+    }
+
+
 
 }

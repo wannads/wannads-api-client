@@ -11,13 +11,57 @@ class WannadsApiClient
 {
     private $apiKey;
     private $apiSecret;
-    private $endpoint = "http://api.wannads.com/v2/";
+
+    private $endpointProd = "http://api.wannads.com/v2/";
+    private $endpointStaging = "http://wanfront-staging.wannads.com:8080/wannads-api-1.0-SNAPSHOT/v2/";
+    private $endpointLocal = "http://localhost:8080/v2/";
+
+    private $endpoint = "http://localhost:8080/v2/";
 
     public function __construct($apiKey, $apiSecret)
     {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
     }
+
+    /////////////////////////////// OFFERS ////////////////////////////////////////////
+
+    // @NotNull String apiKey, v
+    // @NotNull String apiSecret, v
+    // String subId, v
+    // @Size(min = 2, max = 2) String country,
+    // String ip,
+    // String fingerprint,
+    // @DefaultValue("all") String device,
+    // String category,
+    // @DefaultValue("all") Gender gender,
+    // @DefaultValue("all") Payment payment
+
+    public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment)
+    {
+
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId,
+            "country" => $country,
+            "ip" => $ip,
+            "fingerprint" => $fingerprint,
+            "device" => implode(",", $device),
+            "category" => implode(",", $category),
+            "gender" => $gender,
+            "payment" => $payment
+        ];
+
+        $url = $this->endpoint . "offers?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+
+    }
+
+    ////////////////////////////// SURVEYS ////////////////////////////////////////////
 
     public function getSurveyUser($subId)
     {
