@@ -26,16 +26,6 @@ class WannadsApiClient
 
     /////////////////////////////// OFFERS ////////////////////////////////////////////
 
-    // @NotNull String apiKey, v
-    // @NotNull String apiSecret, v
-    // String subId, v
-    // @Size(min = 2, max = 2) String country,
-    // String ip,
-    // String fingerprint,
-    // @DefaultValue("all") String device,
-    // String category,
-    // @DefaultValue("all") Gender gender,
-    // @DefaultValue("all") Payment payment
 
     public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment)
     {
