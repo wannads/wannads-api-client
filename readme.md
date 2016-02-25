@@ -10,7 +10,22 @@ Run the following command to install the package and add it as a requirement to 
 composer require wannads/wannads-api-client
 ```
 
-## Examples
+## Usage
+
+#### Offers
+
+List offers.
+
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$offers = $wannadsApiClient->getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment);
+```
+
+#### Surveys
 
 Create Wannads Surveys user.
 
