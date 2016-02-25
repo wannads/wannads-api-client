@@ -53,7 +53,7 @@ Delete user from Wannads Surveys.
 use WannadsApiClient;
 
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
-$wannadsApiClient->deleteSurveyUser($userId);
+$result = $wannadsApiClient->deleteSurveyUser($userId);
 ```
 
 Get available surveys for a user.
