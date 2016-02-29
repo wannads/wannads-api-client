@@ -25,6 +25,50 @@ $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
 $offers = $wannadsApiClient->getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment);
 ```
 
+Available Parameters
+
+| Parameter        | Options           | Default  |
+| ------------- |:-------------:| -----:|
+| $subId      |  | null |
+| $country      | ES,NL,FR...      |   null |
+| $ip |       |    null |
+| $fingerprint |       |    null |
+| $device | are neat      |    null |
+| $category |  signups,surveys,iphoneapps,ipadapps,androidapps,dailysurveys,downloads     |    null |
+| $gender | male,female      |    null |
+| $payment | yes,no      |    null |
+
+Response
+
+```json
+{
+    "categories": [
+      {
+        "id": "8",
+        "name": "A name"
+      }
+    ],
+    "completed": 0,
+    "conversion_point": "3",
+    "conversion_time": {
+      "id": 1,
+      "description": "in minutes"
+    },
+    "description": "As team boss of a racing team you are responsible for all aspects of racing.",
+    "device_completion_filter": "all",
+    "device_view_filter": "all",
+    "id": 12491,
+    "payment_required": "0",
+    "title": "UnitedGP - iPhone",
+    "url_img": "http://www.example.org/a.png",
+    "offer_url": "http://www.offer.org/",
+    "revenue": 1.3,
+    "currency": "USD",
+    "virtual_currency_value": 25.2,
+    "virtual_currency": "Tokens"
+  }
+```
+
 #### Surveys
 
 Create Wannads Surveys user.
