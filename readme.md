@@ -27,16 +27,16 @@ $offers = $wannadsApiClient->getOffers($subId, $country, $ip, $fingerprint, $dev
 
 Available Parameters
 
-| Parameter        | Options           | Default  |
-| ------------- |:-------------:| -----:|
-| $subId      |  | null |
-| $country      | ES,NL,FR...      |   null |
-| $ip |       |    null |
-| $fingerprint |       |    null |
-| $device | are neat      |    null |
-| $category |  signups,surveys,iphoneapps,ipadapps,androidapps,dailysurveys,downloads     |    null |
-| $gender | male,female      |    null |
-| $payment | yes,no      |    null |
+| Name        | Description           | Posible values  | Required  |
+| ------------ |:-------------:|:-------------:| -----:|
+| $subId      |  | Corresponds to your unique user identifier. If this parameter is included the IP parameter is required | * |
+| $country      | Filters the list of offers to show just the offers available for that country. If the optional parameters sub_id and ip are included, this one is ignored and the country is obtained with the ip      |   null | * |
+| $ip |   IP of the user.    |    null | * |
+| $fingerprint |   Fingerprint of the user    |    null | no |
+| $device | Filters the list of offers to show the offers available to that device.     |    null | no |
+| $category |  signups,surveys,iphoneapps,ipadapps,androidapps,dailysurveys,downloads     |    null | no |
+| $gender | Filters the list of offers to show the ones availables only to that gender      |    null | no | 
+| $payment | Filters the offers to show only the offers that require or not payment      |    null | no |
 
 Response
 
