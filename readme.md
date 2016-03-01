@@ -27,16 +27,16 @@ $offers = $wannadsApiClient->getOffers($subId, $country, $ip, $fingerprint, $dev
 
 Available Parameters
 
-| Name        | Type | Description           | Posible values  | Required  |
-| ------------|:---|:-------------:|:------------:|:----:|
-| $subId      | string |Corresponds to your unique user identifier. If this parameter is included the IP parameter is required |  | * |
-| $country     | string |  Filters the list of offers to show just the offers available for that country. If the optional parameters sub_id and ip are included, this one is ignored and the country is obtained with the ip      |   null | * |
-| $ip | string|   IP of the user.    |    null | * |
-| $fingerprint | string |   Fingerprint of the user    |    null | no |
-| $device | array() | Filters the list of offers to show the offers available to that device.     |    null | no |
-| $category | array() |  	Filters the list of offers with offers of that category only     |    signups,surveys,iphoneapps,ipadapps,androidapps,dailysurveys,downloads | no |
-| $gender | string | Filters the list of offers to show the ones availables only to that gender      |    null | no | 
-| $payment | string | Filters the offers to show only the offers that require or not payment      |    null | no |
+| Name         | Type    | Description                                                                                                                                                       | Example values  | Required  |
+| -----------  |:---     |:-------------:                                                                                                                                                    |:------------:   |:----:     |
+| $subId       | string  |  Corresponds to your unique user identifier. If this parameter is included the IP parameter is required                                                           |  D4sH3r         | *         |
+| $country     | string  | List available offers for a country (ISO2). If the optional parameters $subId and $ip are included, this one is ignored and the country is obtained with the $ip  |   ES            | * |
+| $ip          | string  | IP of the user.                                                                                                                                                   |    84.122.73.80 | * |
+| $fingerprint | string  | Fingerprint of the user. Use  [Valve/fingerprintjs2](https://github.com/Valve/fingerprintjs2/ "fingerprintjs2") library to calculate it.                          | a2cc3b61a276e5b7f55028c0ed5919ea | no |
+| $device      | array() | Filters the list of offers to show the offers available to that device.                                                                                           |    desktop | no |
+| $category    | array() |  	Filters the list of offers with offers of that category only                                                                                                 | signups, surveys | no |
+| $gender      | string  | Filters the list of offers to show the ones availables only to that gender                                                                                        |   male | no | 
+| $payment     | string  | Filters the offers to show only the offers that require or not payment                                                                                            |    no | no |
 
 Response
 
