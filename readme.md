@@ -1,6 +1,9 @@
 # Wannads API PHP Client
 
-http://test.api.wannads.com
+Read the [API documentation](https://wannads.zendesk.com/hc/en-us/articles/205210471-Offers-API) 
+
+Test our [Online Testing Service](http://test.api.wannads.com)
+
 
 ## Installation
 
@@ -38,35 +41,46 @@ Available Parameters
 | $gender      | string  | Filters the list of offers to show the ones availables only to that gender                                                                                        |   male | no | 
 | $payment     | string  | Filters the offers to show only the offers that require or not payment                                                                                            |    no | no |
 
-Response
+* If $subId is included the $ip is required and $country will be ignored.
 
-```json
-{
-    "categories": [
-      {
-        "id": "8",
-        "name": "A name"
-      }
-    ],
-    "completed": 0,
-    "conversion_point": "3",
-    "conversion_time": {
-      "id": 1,
-      "description": "in minutes"
-    },
-    "description": "As team boss of a racing team you are responsible for all aspects of racing.",
-    "device_completion_filter": "all",
-    "device_view_filter": "all",
-    "id": 12491,
-    "payment_required": "0",
-    "title": "UnitedGP - iPhone",
-    "url_img": "http://www.example.org/a.png",
-    "offer_url": "http://www.offer.org/",
-    "revenue": 1.3,
-    "currency": "USD",
-    "virtual_currency_value": 25.2,
-    "virtual_currency": "Tokens"
-  }
+Visit our [documentation](https://wannads.zendesk.com/hc/en-us/articles/205210471-Offers-API) to see the available options.
+
+Result
+
+```php
+array(
+      [
+        "categories" => [],
+        "completed" => 0,
+        "conversion_point" => "Registrate con una tarjeta de crédito válida y manten tu cuenta activa.",
+        "conversion_time" => ["id" => 1],
+        "description" => "7 dias de prueba gratis!",
+        "id" => 71403,
+        "payment_required" => "no",
+        "title" => "High quality movies!",
+        "url_img" => "//statics3.tokenads.com/upload/pDaVH1M5LTCb7onqMhTT.jpg",
+        "offer_url" => "https://www.wannads.com/wtrck?cId=71403&apiKey=2452b43bea8be8c1.28247523&userId=55267",
+        "revenue" => 4.053,
+        "currency" => "USD",
+        "virtual_currency_value" => 283.71,
+        "virtual_currency" => "points",
+      ],
+      [
+        "categories" => [],
+        "completed" => 0,
+        "conversion_point" => "Descarga, instala y empieza a usar para recibir.",
+        "conversion_time" => ["id" => 1],
+        "id" => 120611,
+        "payment_required" => "no",
+        "title" => "eDreams - Prenota Voli economici, Hotel e Auto",
+        "url_img" => "//statics3.woobi.com/upload/PkzLouOF3SUjLA30EW7x.jpg",
+        "offer_url" => "https://www.wannads.com/wtrck?cId=120611&apiKey=2452b43bea8be8c1.28247523&userId=55267",
+        "revenue" => 0.122,
+        "currency" => "USD",
+        "virtual_currency_value" => 8.575,
+        "virtual_currency" => "points",
+      ]
+  )
 ```
 
 #### Surveys
