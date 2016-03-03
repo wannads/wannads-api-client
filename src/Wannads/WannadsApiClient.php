@@ -27,7 +27,7 @@ class WannadsApiClient
     /////////////////////////////// OFFERS ////////////////////////////////////////////
 
 
-    public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment)
+    public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $age, $payment)
     {
 
         $urlParams = [
@@ -40,6 +40,7 @@ class WannadsApiClient
             "device" => implode(",", $device),
             "category" => implode(",", $category),
             "gender" => $gender,
+            "age" => $age,
             "payment" => $payment
         ];
 
@@ -82,8 +83,6 @@ class WannadsApiClient
             "occupation" => $user['occupation'],
             "children_under18" => $user['children_under18'],
             "marital_status" => $user['marital_status'],
-            "phone" => $user['phone'],
-            "address" => $user['address'],
             "country" => $user['country']
         );
 
