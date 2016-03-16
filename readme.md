@@ -93,6 +93,22 @@ Create Wannads Surveys user.
 
 use WannadsApiClient;
 
+$data = [
+                    "email" => "name@test.com",
+                    "gender" => "male",
+                    "birthyear" => 1987,
+                    "first_name" => "Peter",
+                    "last_name" => "Garcia",
+                    "zip" => 48002,
+                    "education_level" => 3,
+                    "occupation" => 2,
+                    "children_under18" => 1,
+                    "marital_status" => 1,
+                    "country" => $country,
+                    "lang" => "SPA",
+                    "lang2" => "ENG"
+        ];
+
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
 $user = $wannadsApiClient->createSurveyUser($userId, $data);
 ```
@@ -104,7 +120,7 @@ Result
 
 array( 
   "sub_id" => "55267test",
-  "email" => "testencuetas@innovativehall.com",
+  "email" => "name@test.com",
   "gender" => "m",
   "birthyear" => 1995,
   "first_name" => "Test1",
@@ -114,7 +130,9 @@ array(
   "occupation" => 2,
   "children_under18" => 0,
   "marital_status" => 1,
-  "country" => "ES"
+  "country" => "ES",
+  "lang" => "SPA",
+  "lang2" => "ENG"
 )
 ```
 

@@ -83,7 +83,9 @@ class WannadsApiClient
             "occupation" => $user['occupation'],
             "children_under18" => $user['children_under18'],
             "marital_status" => $user['marital_status'],
-            "country" => $user['country']
+            "country" => $user['country'],
+            "lang" => $user['lang'],
+            "lang2" => $user['lang2']
         );
 
 
@@ -113,10 +115,7 @@ class WannadsApiClient
             "education_level" => $user['education_level'],
             "occupation" => $user['occupation'],
             "children_under18" => $user['children_under18'],
-            "marital_status" => $user['marital_status'],
-            "phone" => $user['phone'],
-            "address" => $user['address'],
-            "country" => $user['country']
+            "marital_status" => $user['marital_status']
         );
 
 
