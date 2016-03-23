@@ -38,7 +38,7 @@ Available Parameters
 | $fingerprint | string  | Fingerprint of the user. Use  [Valve/fingerprintjs2](https://github.com/Valve/fingerprintjs2/ "fingerprintjs2") library to calculate it.                          | a2cc3b61a276e5b7f55028c0ed5919ea | no |
 | $device      | array() | Filters the list of offers to show the offers available to that device.                                                                                           |    desktop | no |
 | $category    | array() | Filters the list of offers with offers of that category only.                                                                                                     | signups, surveys | no |
-| $gender      | string  | Filters the list of offers to show the ones availables only to that gender.                                                                                        |   male | no | 
+| $gender      | string  | Filters the list of offers to show the ones availables only to that gender.                                                                                        |   m | no | 
 | $age         | integer  | Filters the list of offers to show the ones availables only to the age of the user.                                                                                        |   22 | no | 
 | $payment     | string  | Filters the offers to show only the offers that require or not payment.                                                                                            |    no | no |
 
@@ -88,6 +88,8 @@ array(
 
 Create Wannads Surveys user.
 
+lang2 https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+
 ```php
 <?php
 
@@ -105,7 +107,6 @@ $data = [
                     "children_under18" => 1,
                     "marital_status" => 1,
                     "country" => $country,
-                    "lang" => "SPA",
                     "lang2" => "ENG"
         ];
 
