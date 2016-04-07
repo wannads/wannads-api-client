@@ -216,7 +216,7 @@ array(
 ```
 
 Get optional survey users questions.
-[View codes](https://wannads.zendesk.com/hc/en-us/articles/205210471-Offers-API)
+[View codes](https://wannads.zendesk.com/hc/en-us/articles/208187985)
 
 ```php
 <?php
