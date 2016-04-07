@@ -107,7 +107,8 @@ $data = [
                     "children_under18" => 1,
                     "marital_status" => 1,
                     "country" => $country,
-                    "lang2" => "ENG"
+                    "lang2" => "ENG",
+                    "answers" => []
         ];
 
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
@@ -214,7 +215,101 @@ array(
   )
 ```
 
+Get optional survey users questions.
+[View codes](https://wannads.zendesk.com/hc/en-us/articles/205210471-Offers-API)
 
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$questions = $wannadsApiClient->getUserProfileQuestions($code);
+```
+
+Result
+
+```php
+array(
+      [
+        {
+          "id": 42,
+          "name": "AGE",
+          "question_text": "Por favor, indique su edad.",
+          "question_type": "Numeric - Open-end"
+        },
+        {
+          "id": 43,
+          "name": "GENDER",
+          "question_text": "¿Es usted…?",
+          "question_type": "Single Punch"
+        },
+        {
+          "id": 632,
+          "name": "STANDARD_RELATIONSHIP",
+          "question_text": "¿Cuál es su estado?",
+          "question_type": "Single Punch"
+        },
+        {
+          "id": 633,
+          "name": "STANDARD_EDUCATION",
+          "question_text": "¿Cuál es su nivel de educación?",
+          "question_type": "Single Punch"
+        },
+        {
+          "id": 638,
+          "name": "STANDARD_PRIMARY_DECISION_MAKER",
+          "question_text": "En su hogar, ¿es usted la persona que toma la mayoría de las decisiones de compra cotidiana?",
+          "question_type": "Single Punch"
+        }
+      ]
+  )
+```
+
+Get optional survey users questions options.
+
+```php
+<?php
+
+use WannadsApiClient;
+
+$wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
+$questionOptions = $wannadsApiClient->getUserProfileQuestionsOptions($code, $questionId);
+```
+
+Result
+
+```php
+array(
+      [
+        {
+          "id": 28287,
+          "question_id": 632,
+          "option_text": "Soltero/a, nunca he estado casado/a"
+        },
+        {
+          "id": 28288,
+          "question_id": 632,
+          "option_text": "Casado/a"
+        },
+        {
+          "id": 28289,
+          "question_id": 632,
+          "option_text": "Separado/a, divorciado/a o viudo/a"
+        },
+        {
+          "id": 28290,
+          "question_id": 632,
+          "option_text": "Pareja de hecho / sala de estar con alguien"
+        },
+        {
+          "id": 28291,
+          "question_id": 632,
+          "option_text": "Prefiero no contestar"
+        }
+      ]
+  )
+```
 
 # TEST launch
 

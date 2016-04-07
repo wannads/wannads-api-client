@@ -85,9 +85,9 @@ class WannadsApiClient
             "marital_status" => $user['marital_status'],
             "country" => $user['country'],
             "lang" => $user['lang'],
-            "lang2" => $user['lang2']
+            "lang2" => $user['lang2'],
+            "answers" => $user['answers']
         );
-
 
         $urlParams = [
             "api_key" => $this->apiKey,
@@ -115,7 +115,8 @@ class WannadsApiClient
             "education_level" => $user['education_level'],
             "occupation" => $user['occupation'],
             "children_under18" => $user['children_under18'],
-            "marital_status" => $user['marital_status']
+            "marital_status" => $user['marital_status'],
+            "answers" => $user['answers']
         );
 
 
@@ -161,6 +162,38 @@ class WannadsApiClient
 
         return $result;
     }
+
+    public function getUserProfileQuestions($code)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "code" => $code
+        ];
+
+        $url = $this->endpoint . "surveys/questions?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
+    public function getUserProfileQuestionsOptions($code, $questionId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "code" => $code,
+            "question_id" => $questionId
+        ];
+
+        $url = $this->endpoint . "surveys/questions?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
 
     /**
      * Performs the underlying HTTP request. Not very exciting
