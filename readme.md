@@ -145,6 +145,22 @@ Update Wannads Surveys user.
 
 use WannadsApiClient;
 
+$data = [
+                    "email" => "name@test.com",
+                    "gender" => "male",
+                    "birthyear" => 1987,
+                    "first_name" => "Peter",
+                    "last_name" => "Garcia",
+                    "zip" => 48002,
+                    "education_level" => 3,
+                    "occupation" => 2,
+                    "children_under18" => 1,
+                    "marital_status" => 1,
+                    "country" => $country,
+                    "lang2" => "ENG",
+                    "answers" => [21=> 1, 22 => ["1", "2"], 42 => 30]
+        ];
+
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
 $user = $wannadsApiClient->updateSurveyUser($userId, $data);
 ```
@@ -158,6 +174,46 @@ use WannadsApiClient;
 
 $wannadsApiClient = new WannadsApiClient(API_KEY, API_SECRET);
 $user = $wannadsApiClient->getSurveyUser($userId);
+```
+
+Result
+```php
+array (
+  'sub_id' => '735635622',
+  'email' => 'dummy@gmail.com',
+  'gender' => 'm',
+  'birthyear' => 1985,
+  'first_name' => 'Max',
+  'last_name' => 'Rockatansky',
+  'zip' => '42180',
+  'education_level' => 2,
+  'occupation' => 3,
+  'children_under18' => 2,
+  'marital_status' => 3,
+  'lang' => 'SPA',
+  'lang2' => 'ENG',
+  'country' => 'ES',
+  'answers' =>
+            array (
+                
+                [
+                  'question_id' => 641,
+                  'options' => ['28325']
+                ],
+                [
+                  'question_id' => 15297,
+                  'options' => ['29656']
+                ],
+                [
+                  'question_id' => 642,
+                  'options' => ['28330']
+                ],
+                [
+                  'question_id' => 643,
+                  'options' => ['28366', '28368']
+                ]
+            ),
+)
 ```
 
 Delete user from Wannads Surveys.
