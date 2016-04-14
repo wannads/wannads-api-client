@@ -85,7 +85,7 @@ class WannadsApiClient
             "marital_status" => $user['marital_status'],
             "country" => $user['country'],
             "lang2" => $user['lang2'],
-            "answers" => $user['answers']
+            "answers" => !empty($user['answers']) ? $user['answers'] : array()
         );
 
         $urlParams = [
@@ -115,7 +115,7 @@ class WannadsApiClient
             "occupation" => $user['occupation'],
             "children_under18" => $user['children_under18'],
             "marital_status" => $user['marital_status'],
-            "answers" => $user['answers']
+            "answers" => !empty($user['answers']) ? $user['answers'] : array()
         );
 
 
