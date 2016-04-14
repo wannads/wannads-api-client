@@ -84,7 +84,6 @@ class WannadsApiClient
             "children_under18" => $user['children_under18'],
             "marital_status" => $user['marital_status'],
             "country" => $user['country'],
-            "lang" => $user['lang'],
             "lang2" => $user['lang2'],
             "answers" => $user['answers']
         );
