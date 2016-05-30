@@ -16,7 +16,7 @@ class WannadsApiClient
     private $endpointStaging = "http://wanfront-staging.wannads.com:8080/wannads-api-1.0-SNAPSHOT/v2/";
     private $endpointLocal = "http://localhost:8080/v2/";
 
-    private $endpoint = "http://api.wannads.com/v2/";
+    private $endpoint = "http://wanfront-staging.wannads.com:8080/wannads-api-1.0-SNAPSHOT/v2/";
 
     public function __construct($apiKey, $apiSecret)
     {
@@ -48,7 +48,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result;
+        return $result["result"];
 
     }
 
@@ -66,7 +66,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result;
+        return $result["result"];
     }
 
     public function createSurveyUser($subId, $user)
@@ -98,7 +98,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "POST", $surveyUserData);
 
-        return $result;
+        return $result["result"];
     }
 
     public function updateSurveyUser($subId, $user)
@@ -129,7 +129,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "PUT", $surveyUserData);
 
-        return $result;
+        return $result["result"];
     }
 
     public function deleteSurveyUser($subId)
@@ -143,6 +143,13 @@ class WannadsApiClient
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "DELETE");
+
+        if($result["client"] == "curl"){
+            $result = $result["responseHeaders"]["http_code"] == "200" ? true : false;
+        }else if($result["client"] == "fgc"){
+            $responseHeaders = $this->parseHeaders($result["responseHeaders"]);
+            $result = $responseHeaders["reponse_code"] == "200" ? true : false;
+        }
 
         return $result;
     }
@@ -159,7 +166,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result;
+        return $result["result"];
     }
 
     public function getUserProfileQuestions($code)
@@ -174,7 +181,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result;
+        return $result["result"];
     }
 
     public function getUserProfileQuestionsOptions($code, $questionId)
@@ -190,7 +197,7 @@ class WannadsApiClient
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result;
+        return $result["result"];
     }
 
 
@@ -202,6 +209,10 @@ class WannadsApiClient
      */
     private function makeRequest($url, $method, $args = array(), $timeout = 10)
     {
+
+        $responseHeaders = null;
+        $client = "";
+
         $json_data = json_encode($args);
 
         if (function_exists('curl_init') && function_exists('curl_setopt')) {
@@ -224,7 +235,11 @@ class WannadsApiClient
             curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
             $result = curl_exec($ch);
 
+            $responseHeaders = curl_getinfo($ch);
+
             curl_close($ch);
+
+            $client = "curl";
         } else {
 
             if ($method == "PUT" || $method == "POST") {
@@ -248,10 +263,36 @@ class WannadsApiClient
                 )));
             }
 
+            $responseHeaders = $http_response_header;
+            $client = "fgc";
+
         }
 
+        $objReturn = array(
+            "result" => $result ? json_decode($result, true) : false,
+            "responseHeaders" =>$responseHeaders,
+            "client" => $client
+        );
 
-        return $result ? json_decode($result, true) : false;
+        return $objReturn;
+    }
+
+    private function parseHeaders( $headers )
+    {
+        $head = array();
+        foreach( $headers as $k=>$v )
+        {
+            $t = explode( ':', $v, 2 );
+            if( isset( $t[1] ) )
+                $head[ trim($t[0]) ] = trim( $t[1] );
+            else
+            {
+                $head[] = $v;
+                if( preg_match( "#HTTP/[0-9\.]+\s+([0-9]+)#",$v, $out ) )
+                    $head['reponse_code'] = intval($out[1]);
+            }
+        }
+        return $head;
     }
 
     private function dd($var)
