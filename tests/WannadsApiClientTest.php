@@ -24,6 +24,16 @@ class WannadsApiClientTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($result);
     }
 
+    public function testGetNextSurveyUser()
+    {
+
+        $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
+
+        $result = $client->getNextSurvey($this->subId);
+
+        $this->assertNotNull($result);
+    }
+
 //    public function testGetOffers()
 //    {
 //

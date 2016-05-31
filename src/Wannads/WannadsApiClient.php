@@ -162,6 +162,21 @@ class WannadsApiClient
         return $result;
     }
 
+    public function getNextSurvey($subId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "surveys/next?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
     public function getUserProfileQuestions($code)
     {
         $urlParams = [
