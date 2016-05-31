@@ -60,7 +60,7 @@ class WannadsApiClient
             "api_key" => $this->apiKey,
             "api_secret" => $this->apiSecret,
             "sub_id" => $subId,
-            "by_email" => $byEmail
+            "by_email" => "$byEmail"
         ];
 
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
