@@ -16,7 +16,7 @@ class WannadsApiClient
     private $endpointStaging = "http://wanfront-staging.wannads.com:8080/wannads-api-1.0-SNAPSHOT/v2/";
     private $endpointLocal = "http://localhost:8080/v2/";
 
-    private $endpoint = "http://api.wannads.com/v2/";
+    private $endpoint = "http://localhost:8080/v2/";
 
     public function __construct($apiKey, $apiSecret)
     {
@@ -201,11 +201,11 @@ class WannadsApiClient
             "country" => $country
         ];
 
-        $url = $this->endpoint . "surveys/countrylanguages?" . http_build_query($urlParams);
+        $url = $this->endpoint . "surveys/questions/countrylanguages?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
 
-        return $result["result"];
+        return $result;
     }
 
 

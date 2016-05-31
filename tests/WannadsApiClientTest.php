@@ -24,20 +24,31 @@ class WannadsApiClientTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($result);
     }
 
-    public function testGetOffers()
+//    public function testGetOffers()
+//    {
+//
+//        $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
+//
+//        $country = "ES";
+//        $ip = "";
+//        $fingerprint = "";
+//        $device = []; // desktop, iphone, ipad, android, empty for all
+//        $category = ["dailysurveys"]; // all, dailysurveys, surveys, signups, downloads, pinsubmit, purchase, dating, mobileapps
+//        $gender = ""; // female, male, female
+//        $payment = ""; // all, yes, no
+//
+//        $result = $client->getOffers($this->subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment);
+//
+//        $this->assertNotEmpty($result);
+//    }
+
+    public function testGetCountryLanguages()
     {
 
         $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
 
         $country = "ES";
-        $ip = "";
-        $fingerprint = "";
-        $device = []; // desktop, iphone, ipad, android, empty for all
-        $category = ["dailysurveys"]; // all, dailysurveys, surveys, signups, downloads, pinsubmit, purchase, dating, mobileapps
-        $gender = ""; // female, male, female
-        $payment = ""; // all, yes, no
-
-        $result = $client->getOffers($this->subId, $country, $ip, $fingerprint, $device, $category, $gender, $payment);
+        $result = $client->getCountryLanguages($country);
 
         $this->assertNotEmpty($result);
     }
