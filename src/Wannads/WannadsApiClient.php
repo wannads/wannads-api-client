@@ -54,12 +54,13 @@ class WannadsApiClient
 
     ////////////////////////////// SURVEYS ////////////////////////////////////////////
 
-    public function getSurveyUser($subId)
+    public function getSurveyUser($subId, $byEmail = false)
     {
         $urlParams = [
             "api_key" => $this->apiKey,
             "api_secret" => $this->apiSecret,
-            "sub_id" => $subId
+            "sub_id" => $subId,
+            "by_email" => $byEmail
         ];
 
         $url = $this->endpoint . "surveys/users?" . http_build_query($urlParams);
