@@ -193,6 +193,21 @@ class WannadsApiClient
         return $result;
     }
 
+    public function getCountryLanguages($country)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "country" => $country
+        ];
+
+        $url = $this->endpoint . "surveys/countrylanguages?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result["result"];
+    }
+
 
     /**
      * Performs the underlying HTTP request. Not very exciting
