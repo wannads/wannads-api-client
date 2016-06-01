@@ -10,16 +10,16 @@
 class WannadsApiClientTest extends PHPUnit_Framework_TestCase
 {
 
-    private $apiKey = "54c679ed6e976224761456";
-    private $apiSecret = "7e5de9a696";
-    private $subId = "";
+    private $apiKey = "2452b43bea8be8c1.28247523";
+    private $apiSecret = "16413619b5";
+    private $subId = "nonono2222nonono@gmail.com";
 
     public function testGeSurveyUser()
     {
 
         $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
 
-        $result = $client->getSurveyUser($this->subId);
+        $result = $client->getSurveyUser($this->subId, true);
 
         $this->assertNotNull($result);
     }
@@ -33,6 +33,17 @@ class WannadsApiClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertNotNull($result);
     }
+
+    public function testGetUserNextProfileQuestions()
+    {
+
+        $client = new \Wannads\WannadsApiClient($this->apiKey, $this->apiSecret);
+
+        $result = $client->getUserNextProfileQuestions($this->subId, 2);
+
+        $this->assertNotNull($result);
+    }
+
 
 //    public function testGetOffers()
 //    {

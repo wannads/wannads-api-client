@@ -209,6 +209,22 @@ class WannadsApiClient
         return $result;
     }
 
+    public function getUserNextProfileQuestions($subId, $number)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId,
+            "number" => $number
+        ];
+
+        $url = $this->endpoint . "surveys/questions/next?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
     public function getCountryLanguages($country)
     {
         $urlParams = [
