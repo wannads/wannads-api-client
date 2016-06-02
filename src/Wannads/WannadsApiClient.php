@@ -202,7 +202,7 @@ class WannadsApiClient
             "question_id" => $questionId
         ];
 
-        $url = $this->endpoint . "surveys/questions?" . http_build_query($urlParams);
+        $url = $this->endpoint . "surveys/questions/options?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
 
