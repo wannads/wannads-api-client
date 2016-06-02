@@ -262,14 +262,16 @@ class WannadsApiClient
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
             } else if ($method == "PUT") {
-                curl_setopt($ch, CURLOPT_PUT, true);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT"); //curl_setopt($ch, CURLOPT_PUT, true); con esto no funciona :S
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
             } else if ($method == "DELETE") {
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
             }
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+
             $result = curl_exec($ch);
+            $info = curl_getinfo($ch);
 
             curl_close($ch);
         } else {
