@@ -86,6 +86,7 @@ class WannadsApiClient
             "marital_status" => $user['marital_status'],
             "country" => $user['country'],
             "lang2" => $user['lang2'],
+            "email_notifications" => $user["email_notifications"],
             "answers" => !empty($user['answers']) ? $user['answers'] : array()
         );
 
