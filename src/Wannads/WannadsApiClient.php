@@ -164,12 +164,13 @@ class WannadsApiClient
         return $result;
     }
 
-    public function getNextSurvey($subId)
+    public function getNextSurvey($subId, $minimunPayout)
     {
         $urlParams = [
             "api_key" => $this->apiKey,
             "api_secret" => $this->apiSecret,
-            "sub_id" => $subId
+            "sub_id" => $subId,
+            "minimun_payout" => $minimunPayout,
         ];
 
         $url = $this->endpoint . "surveys/next?" . http_build_query($urlParams);
