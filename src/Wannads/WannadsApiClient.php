@@ -27,7 +27,7 @@ class WannadsApiClient
     /////////////////////////////// OFFERS ////////////////////////////////////////////
 
 
-    public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $age, $payment)
+    public function getOffers($subId, $country, $ip, $fingerprint, $device, $category, $gender, $age, $payment, $extra = [])
     {
 
         $urlParams = [
@@ -47,6 +47,28 @@ class WannadsApiClient
         $url = $this->endpoint . "offers?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
+
+        try {
+            if (!empty($extra) && is_array($extra)) {
+
+                $urlParamsExtra = http_build_query($extra);
+
+                if (!empty($urlParamsExtra) && !empty($result) && is_array($result)) {
+                    foreach ($result as &$offer) {
+                        if (is_array($offer) && array_key_exists('offer_url', $offer)) {
+                            if (strpos($offer["offer_url"], '?') !== false) {
+                                $offer["offer_url"] = $offer["offer_url"] . "&" . $urlParamsExtra;
+                            } else {
+                                $offer["offer_url"] = $offer["offer_url"] . "?" . $urlParamsExtra;
+                            }
+                        }
+                    }
+                }
+
+            }
+        } catch (\Exception $e) {
+
+        }
 
         return $result;
 
@@ -149,7 +171,7 @@ class WannadsApiClient
         return $result;
     }
 
-    public function getSurveys($subId, $isMobile)
+    public function getSurveys($subId, $isMobile, $extra = [])
     {
         $urlParams = [
             "api_key" => $this->apiKey,
@@ -161,6 +183,29 @@ class WannadsApiClient
         $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
 
         $result = $this->makeRequest($url, "GET");
+
+        try {
+            if (!empty($extra) && is_array($extra)) {
+
+                $urlParamsExtra = http_build_query($extra);
+
+                if (!empty($urlParamsExtra) && !empty($result) && is_array($result)) {
+                    foreach ($result as &$survey) {
+                        if (is_array($survey) && array_key_exists('offer_url', $survey)) {
+                            if (strpos($survey["offer_url"], '?') !== false) {
+                                $survey["offer_url"] = $survey["offer_url"] . "&" . $urlParamsExtra;
+                            } else {
+                                $survey["offer_url"] = $survey["offer_url"] . "?" . $urlParamsExtra;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        } catch (\Exception $e) {
+
+        }
 
         return $result;
     }
