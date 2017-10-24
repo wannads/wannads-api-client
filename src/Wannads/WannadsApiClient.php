@@ -173,7 +173,7 @@ class WannadsApiClient
         return $result;
     }
 
-    public function getSurveys($subId, $isMobile, $ip, $fp = null, $extra = [])
+    public function getSurveys($subId, $isMobile, $ip, $fp = null, $extra = [], $fp2 = null)
     {
         $urlParams = [
             "api_key" => $this->apiKey,
@@ -182,6 +182,7 @@ class WannadsApiClient
             "is_mobile" => $isMobile,
             "ip" => $ip,
             "fp" => $fp,
+            "fp2" => $fp2,
         ];
 
         $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
@@ -214,7 +215,7 @@ class WannadsApiClient
         return $result;
     }
 
-    public function getNextSurvey($subId, $minimunPayout, $domain = "", $isMobile, $ip, $fp = null)
+    public function getNextSurvey($subId, $minimunPayout, $domain = "", $isMobile, $ip, $fp = null, $fp2 = null)
     {
         $urlParams = [
             "api_key" => $this->apiKey,
@@ -225,6 +226,7 @@ class WannadsApiClient
             "is_mobile" => $isMobile,
             "ip" => $ip,
             "fp" => $fp,
+            "fp2" => $fp2,
         ];
 
         $url = $this->endpoint . "surveys/next?" . http_build_query($urlParams);
