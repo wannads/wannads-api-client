@@ -303,6 +303,54 @@ class WannadsApiClient
         return $result;
     }
 
+    // CLAIMS
+
+    public function getClaimsClicks($subId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "claims/clicks?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
+
+    public function getClaimsPendingOffers($subId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "claims/pending?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
+    public function getClaimsCreditedOffers($subId)
+    {
+        $urlParams = [
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId
+        ];
+
+        $url = $this->endpoint . "claims/credited?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET");
+
+        return $result;
+    }
+
 
     /**
      * Performs the underlying HTTP request. Not very exciting
