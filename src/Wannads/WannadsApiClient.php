@@ -187,7 +187,7 @@ class WannadsApiClient
 
         $url = $this->endpoint . "surveys?" . http_build_query($urlParams);
 
-        $result = $this->makeRequest($url, "GET");
+        $result = $this->makeRequest($url, "GET", [],20);
 
         try {
             if (!empty($extra) && is_array($extra)) {
@@ -229,7 +229,7 @@ class WannadsApiClient
 
         $url = $this->endpoint . "surveys/bell?" . http_build_query($urlParams);
 
-        $result = $this->makeRequest($url, "GET");
+        $result = $this->makeRequest($url, "GET", [],20);
 
         try {
             if (!empty($extra) && is_array($extra)) {
@@ -278,7 +278,7 @@ class WannadsApiClient
 
         $url = $this->endpoint . "surveys/next?" . http_build_query($urlParams);
 
-        $result = $this->makeRequest($url, "GET");
+        $result = $this->makeRequest($url, "GET", [],20);
 
         return $result;
     }
