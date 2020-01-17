@@ -257,6 +257,49 @@ class WannadsApiClient
         return $result;
     }
 
+    public function getSurveysByProvider($providerKey, $subId, $isMobile, $ip, $fp = null, $extra = [], $fp2 = null)
+    {
+        $urlParams = [
+            "provider_key" => $providerKey,
+            "api_key" => $this->apiKey,
+            "api_secret" => $this->apiSecret,
+            "sub_id" => $subId,
+            "is_mobile" => $isMobile,
+            "ip" => $ip,
+            "fp" => $fp,
+            "fp2" => $fp2,
+        ];
+
+        $url = $this->endpoint . "surveys/prv?" . http_build_query($urlParams);
+
+        $result = $this->makeRequest($url, "GET", [],20);
+
+        try {
+            if (!empty($extra) && is_array($extra)) {
+
+                $urlParamsExtra = http_build_query($extra);
+
+                if (!empty($urlParamsExtra) && !empty($result) && is_array($result)) {
+                    foreach ($result as &$survey) {
+                        if (is_array($survey) && array_key_exists('offer_url', $survey)) {
+                            if (strpos($survey["offer_url"], '?') !== false) {
+                                $survey["offer_url"] = $survey["offer_url"] . "&" . $urlParamsExtra;
+                            } else {
+                                $survey["offer_url"] = $survey["offer_url"] . "?" . $urlParamsExtra;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        } catch (\Exception $e) {
+
+        }
+
+        return $result;
+    }
+
     public function getNextSurvey($subId, $minimunPayout, $domain = "", $isMobile, $ip, $fp = null, $fp2 = null, $subId2 = null, $subId3 = null, $subId4 = null, $subId5 = null, $subId6 = null)
     {
         $urlParams = [
