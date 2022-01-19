@@ -12,11 +12,11 @@ class WannadsApiClient
     private $apiKey;
     private $apiSecret;
 
-    private $endpointProd = "http://api.wannads.com/v2/";
+    private $endpointProd = "https://api.wannads.com/v2/";
     private $endpointStaging = "http://wanfront-staging.wannads.com:8080/wannads-api-1.0-SNAPSHOT/v2/";
     private $endpointLocal = "http://localhost:8080/v2/";
 
-    private $endpoint = "http://api.wannads.com/v2/";
+    private $endpoint = "https://api.wannads.com/v2/";
 
     public function __construct($apiKey, $apiSecret)
     {
