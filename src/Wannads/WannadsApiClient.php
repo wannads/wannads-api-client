@@ -92,7 +92,7 @@ class WannadsApiClient
         return $result;
     }
 
-    public function createSurveyUser($subId, $user)
+    public function createSurveyUser($subId, $user, $ip = null)
     {
         $surveyUserData = array(
             "sub_id" => $subId,
@@ -108,6 +108,7 @@ class WannadsApiClient
             "children_under18" => $user['children_under18'],
             "marital_status" => $user['marital_status'],
             "country" => $user['country'],
+            "register_ip" => null,
             "lang2" => $user['lang2'],
             "email_notifications" => $user["email_notifications"],
             "answers" => !empty($user['answers']) ? $user['answers'] : array()
